@@ -45,14 +45,16 @@ public class EnemyBehavior : MonoBehaviour
         m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        navMeshAgent.isStopped = false;
-        navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
-        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+        //navMeshAgent.isStopped = false;
+        //navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
+        //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
+        //EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
+        m_PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Move(speedRun);
         Chasing();
         /*if (!m_IsPatrol)
         {
@@ -68,14 +70,14 @@ public class EnemyBehavior : MonoBehaviour
     {
         //  The enemy is chasing the player
         m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
-        playerLastPosition = Vector3.zero;          //  Reset the player near position
+        //playerLastPosition = Vector3.zero;          //  Reset the player near position
 
         if (!m_CaughtPlayer)
         {
-            Move(speedRun);
             navMeshAgent.SetDestination(m_PlayerPosition);          //  set the destination of the enemy to the player location
+            //Move(speedRun);
         }
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
+        /*if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
             {
@@ -95,7 +97,7 @@ public class EnemyBehavior : MonoBehaviour
                     Stop();
                 m_WaitTime -= Time.deltaTime;
             }
-        }
+        }*/
     }
 
     private void Patroling()
