@@ -2766,6 +2766,7 @@ GameObject:
   - component: {fileID: 664056636}
   - component: {fileID: 664056637}
   - component: {fileID: 664056638}
+  - component: {fileID: 664056639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2817,6 +2818,114 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &664056639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664056635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4facf3b77576c9643a4715a80a71a129, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 4bb5c5eb0b70db44bad069d1e801a99f, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a013261-427f-4a17-b0d4-ac40c45d162b
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/OBINS
+      OBINS
+
+      AnnePro2/stick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c40cdc85-ef08-481b-b399-ba1d55601f8f
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43c70365-5220-4d80-8379-5a4ee67958f0
+    m_ActionName: 'Player/Fire[/Mouse/leftButton,/OBINS OBINS
+
+      AnnePro2/trigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f51efe0-a4f9-4686-9898-a2618c1858c7
+    m_ActionName: 'UI/Navigate[/OBINS OBINS
+
+      AnnePro2/stick/up,/OBINS OBINS
+
+      AnnePro2/stick/down,/OBINS
+      OBINS
+
+      AnnePro2/stick/left,/OBINS OBINS
+
+      AnnePro2/stick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe18077b-8b84-4ee4-b60b-80f57d7e9afe
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 790a3b94-bb33-4be9-bcd0-9b1051321cec
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4b6c7ce-3cb7-4ebc-b5a3-c81caa38fda2
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d9962fd-89b6-42b3-9ec1-00ebcc9c4423
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73f5ffcd-c977-4455-8a87-e2b658f8f6c7
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f97d1ee-21ed-4030-bdb4-f676004a8bf2
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c5ffcdd-b358-4fc1-9d6b-468b2eb5d786
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99503973-e2b1-4437-b00e-9451d0eae9e3
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f387c075-e86d-4bde-a032-e1b4ed447f58
+    m_ActionName: UI/TrackedDeviceOrientation
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &668827589
 PrefabInstance:
   m_ObjectHideFlags: 0
