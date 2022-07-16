@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
     private InputAction _moveInput;
 
     private Camera _mainCamera;
+    public Vector3 cameraOffset;
 
     private void Awake()
     {
@@ -31,6 +33,16 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
         _moveInput = _playerControls.Player.Move;
         _playerControls.Player.Fire.performed += Fire;
         _rb = GetComponent<Rigidbody>();
+        var cm = GameObject.FindGameObjectWithTag("PlayerCM");
+        var vCam = cm.GetComponent<CinemachineVirtualCamera>();
+        var selfTransform = transform;
+        vCam.gameObject.SetActive(false);
+        vCam.Follow = selfTransform;
+        vCam.LookAt = selfTransform;
+        cameraOffset = selfTransform.position + new Vector3(0, 10, -10);
+        vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = cameraOffset;
+        vCam.ForceCameraPosition(cameraOffset, Quaternion.identity);
+        vCam.gameObject.SetActive(true);
     }
 
     private void OnDisable()
@@ -64,14 +76,8 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
     {
         // _rb.velocity = speed * Time.fixedDeltaTime * direction;
         // _rb.AddForce(magnitude * Time.fixedDeltaTime * direction, ForceMode.Force);
-        _rb.AddForce(magnitude * direction, ForceMode.Force);
+        // _rb.AddForce(magnitude * direction, ForceMode.Force);
         _rb.AddForceAtPosition(magnitude * direction, transform.position + new Vector3(0, 1, 0));
-
-
-        // if (direction != Vector3.zero)
-        // {
-        //     Debug.Log((magnitude * Time.fixedDeltaTime * direction).ToString());
-        // }
     }
 
     private void SetCharacterLookAtCursor()
@@ -87,50 +93,8 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
         throw new NotImplementedException();
     }
 
-    public void Damage(float damage, Collision hitResult)
+    public void Damage(float damage, Vector3 impactForce, Vector3 impactPoint)
     {
+        throw new NotImplementedException();
     }
-
-    // private PlayerControls _playerControls;
-    //
-    // private void Awake()
-    // {
-    //     _playerControls = new PlayerControls();
-    // }
-    //
-    // private void OnEnable()
-    // {
-    //     _playerControls.Enable();
-    //     _playerControls.Player.Fire.performed += Fired;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     _playerControls.Player.Fire.performed -= Fired;
-    //     _playerControls.Disable();
-    //     
-    // }
-    //
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-    //     
-    // }
-    //
-    // private void Fired(InputAction.CallbackContext context)
-    // {
-    //     Debug.Log("Fired");
-    // }
-    //
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     Vector2 move = _playerControls.Player.Move.ReadValue<Vector2>();
-    //     // Debug.Log(move);
-    //     bool jump = _playerControls.Player.Jump.triggered;
-    //     if (jump)
-    //     {
-    //         Debug.Log("jump");
-    //     }
-    // }
 }
