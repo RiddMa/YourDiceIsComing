@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class MyCharacterController : MonoBehaviour
+public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float>
 {
     private Rigidbody _rb;
     private float _movementX;
@@ -74,6 +75,14 @@ public class MyCharacterController : MonoBehaviour
     }
 
     private void SetCharacterLookAtCursor()
+    {
+    }
+
+    public void Kill()
+    {
+    }
+
+    public void Damage(float damageTaken)
     {
     }
 
