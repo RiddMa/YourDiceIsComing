@@ -82,7 +82,12 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
     {
     }
 
-    public void Damage(float damageTaken)
+    public void Damage(float damage)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Damage(float damage, Collision hitResult)
     {
     }
 
