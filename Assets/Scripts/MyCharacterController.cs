@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 
 public class MyCharacterController : MonoBehaviour
 {
-    private PlayerInput _playerInput;
     private Rigidbody _rb;
     private float _movementX;
     private float _movementY;
@@ -17,11 +16,12 @@ public class MyCharacterController : MonoBehaviour
     private PlayerControls _playerControls;
     private InputAction _moveInput;
 
+    private Camera _mainCamera;
+
     private void Awake()
     {
         _playerControls = new PlayerControls();
-        _playerInput = GetComponent<PlayerInput>();
-        _moveInput = _playerInput.actions["jump"];
+        _mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -29,6 +29,7 @@ public class MyCharacterController : MonoBehaviour
         _playerControls.Enable();
         _moveInput = _playerControls.Player.Move;
         _playerControls.Player.Fire.performed += Fire;
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnDisable()
@@ -43,19 +44,14 @@ public class MyCharacterController : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         var movement = _moveInput.ReadValue<Vector2>();
-        if (movement != Vector2.zero)
-        {
-            Debug.Log("Movement values:" + movement);
-        }
 
-        _movementX = _moveInput.ReadValue<Vector2>().x;
-        _movementY = _moveInput.ReadValue<Vector2>().y;
+        _movementX = movement.x;
+        _movementY = movement.y;
     }
 
     private void FixedUpdate()
@@ -68,11 +64,19 @@ public class MyCharacterController : MonoBehaviour
         // _rb.velocity = speed * Time.fixedDeltaTime * direction;
         // _rb.AddForce(magnitude * Time.fixedDeltaTime * direction, ForceMode.Force);
         _rb.AddForce(magnitude * direction, ForceMode.Force);
-        if (direction != Vector3.zero)
-        {
-            Debug.Log((magnitude * Time.fixedDeltaTime * direction).ToString());
-        }
+        _rb.AddForceAtPosition(magnitude * direction, transform.position + new Vector3(0, 1, 0));
+
+
+        // if (direction != Vector3.zero)
+        // {
+        //     Debug.Log((magnitude * Time.fixedDeltaTime * direction).ToString());
+        // }
     }
+
+    private void SetCharacterLookAtCursor()
+    {
+    }
+
     // private PlayerControls _playerControls;
     //
     // private void Awake()
