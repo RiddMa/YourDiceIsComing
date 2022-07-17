@@ -36,7 +36,7 @@ public class Health : MonoBehaviour, IDamageable<float>, IKillable
 
     public void Damage(float damage, Vector3 impactForce, Vector3 impactPoint)
     {
-        rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.VelocityChange);
+        rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.Impulse);
         healthPoint -= damage * (1 - defence);
         if (!hasKilled && healthPoint < 0f)
         {

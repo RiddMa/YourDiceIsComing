@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     private Vector3 velocity;
     public Rigidbody rb = null;
-    private float impact = 10f;
+    private float impact = 1f;
     private float liveTime = 10f;
     private HashSet<int> targetList = new HashSet<int>();
 
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
             foreach(var con in collision.contacts)
             {
                 Debug.Log("Damage!!!" + (++cnt).ToString());
-                DamageTaken.Damage(51f, impact * velocity.normalized, con.point);
+                DamageTaken.Damage(51f, impact * (velocity.normalized + Vector3.up * 2), con.point);
                 break;
             }
             targetList.Add(DamageTaken.GetHashCode());
