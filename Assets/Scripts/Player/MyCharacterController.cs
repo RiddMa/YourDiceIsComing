@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class MyCharacterController : MonoBehaviour
+public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillable
 {
     private Rigidbody _rb;
     private float _movementX;
@@ -26,8 +26,8 @@ public class MyCharacterController : MonoBehaviour
     public float bulletSpeed = 20f;
     private Transform _turretSocketTransform;
 
-    public float health;
-    public GameObject healthUI;
+    public float health = 500f;
+    public HealthDisplay healthDisplay;
     public GameObject explosiveDebris;
 
     private void Awake()
@@ -60,7 +60,8 @@ public class MyCharacterController : MonoBehaviour
         vCam.gameObject.SetActive(true);
         _turretSocketTransform = playerTurret.transform.Find("Socket");
 
-        healthUI = GameObject.Find("Canvas/Health");
+        healthDisplay = GameObject.Find("Canvas/Health").GetComponent<HealthDisplay>();
+        healthDisplay.SetHealth(health);
     }
 
     private void OnDisable()
@@ -114,13 +115,14 @@ public class MyCharacterController : MonoBehaviour
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
         Instantiate(explosiveDebris, transform.position, transform.rotation);
+        Destroy(playerTurret);
         Destroy(gameObject);
     }
 
     public void Damage(float damage)
     {
         health -= damage;
-        healthUI.GetComponent<HealthDisplay>().SetHealth(health);
+        healthDisplay.SetHealth(health);
         if (health <= 0)
         {
             Kill();
@@ -131,7 +133,7 @@ public class MyCharacterController : MonoBehaviour
     {
         _rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.Impulse);
         health -= damage;
-        healthUI.GetComponent<HealthDisplay>().SetHealth(health);
+        healthDisplay.SetHealth(health);
         if (health <= 0)
         {
             Kill();

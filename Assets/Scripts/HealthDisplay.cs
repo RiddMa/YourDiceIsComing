@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class HealthDisplay : MonoBehaviour
 {
     // public int health;
-    private TextMeshPro _healthText;
+    private TMP_Text _healthText;
 
     // Start is called before the first frame update
     void Start()
     {
-        _healthText = GetComponent<TextMeshPro>();
+        _healthText = GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
