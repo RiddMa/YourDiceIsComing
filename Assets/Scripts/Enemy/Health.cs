@@ -10,14 +10,19 @@ public class Health : MonoBehaviour, IDamageable<float>, IKillable
     public GameObject Explosive_debris;
     public GameObject Icon;
     Rigidbody rb = null;
+    private bool hasKilled = false;
 
     private float m_Timer = 1.0f;
 
     public void Kill()
     {
-        Debug.Log("killed");
+        Debug.Log("killed" + transform.position.ToString());
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        if(transform.position.y < 2.4f)
+        {
+            transform.position = new Vector3(transform.position.x, 2.4f, transform.position.z);
+        }
         Instantiate(Explosive_debris, transform.position, transform.rotation);
         Instantiate(Icon, transform.position, transform.rotation);
         Destroy(gameObject);
@@ -33,8 +38,9 @@ public class Health : MonoBehaviour, IDamageable<float>, IKillable
     {
         rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.VelocityChange);
         healthPoint -= damage * (1 - defence);
-        if (healthPoint < 0f)
+        if (!hasKilled && healthPoint < 0f)
         {
+            hasKilled = true;
             Kill();
         }
     }

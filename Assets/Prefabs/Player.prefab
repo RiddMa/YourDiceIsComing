@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnitude: 60
   cameraOffset: {x: 0, y: 10, z: -10}
+  playerTurret: {fileID: 0}
+  bulletTypeGameObject: {fileID: 0}
+  bulletSpeed: 20
 --- !u!114 &7168229562322533102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +194,7 @@ GameObject:
   - component: {fileID: 7168229562692944375}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

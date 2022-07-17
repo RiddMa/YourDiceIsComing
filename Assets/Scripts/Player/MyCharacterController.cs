@@ -67,7 +67,7 @@ public class MyCharacterController : MonoBehaviour
         var rot = playerTurret.transform.rotation;
         var bullet = Instantiate(bulletTypeGameObject, _turretSocketTransform.position, rot);
         var bulletSpeedVector = bulletSpeed * playerTurret.transform.forward;
-        bullet.GetComponent<Bullet>().shoot(bulletSpeedVector);
+        bullet.GetComponent<Bullet>().Shoot(bulletSpeedVector);
     }
 
     private void Start()
