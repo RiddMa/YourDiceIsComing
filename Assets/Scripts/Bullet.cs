@@ -6,12 +6,12 @@ using Interfaces;
 public class Bullet : MonoBehaviour
 {
     private Vector3 velocity;
-    private Rigidbody rb;
+    public Rigidbody rb = null;
     private float impact = 10;
 
     public void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
     }
 
