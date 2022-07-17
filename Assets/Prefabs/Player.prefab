@@ -48,11 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb5c5eb0b70db44bad069d1e801a99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 60
+  magnitude: 80
   cameraOffset: {x: 0, y: 10, z: -10}
   playerTurret: {fileID: 0}
   bulletTypeGameObject: {fileID: 0}
   bulletSpeed: 20
+  health: 0
+  healthUI: {fileID: 0}
+  explosiveDebris: {fileID: 4709273232330652049, guid: 2103ac4717c10804fbe14c470608b03f, type: 3}
 --- !u!114 &7168229562322533102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +288,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7168229562322533091}
     m_Modifications:
+    - target: {fileID: 1281264617383605455, guid: 82d7b73a7ca88da4ebfbd30a28bcbd67, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1281264617389113647, guid: 82d7b73a7ca88da4ebfbd30a28bcbd67, type: 3}
       propertyPath: m_Name
       value: d6-blue

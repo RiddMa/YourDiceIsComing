@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class MyCharacterController : MonoBehaviour
+public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillable
 {
     private Rigidbody _rb;
     private float _movementX;
@@ -26,6 +26,10 @@ public class MyCharacterController : MonoBehaviour
     public float bulletSpeed = 20f;
     private Transform _turretSocketTransform;
 
+    public float health = 500f;
+    public HealthDisplay healthDisplay;
+    public GameObject explosiveDebris;
+
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -37,15 +41,15 @@ public class MyCharacterController : MonoBehaviour
         _playerControls.Enable();
         _moveInput = _playerControls.Player.Move;
         _playerControls.Player.Fire.performed += Fire;
-        // _rb = transform.Find("Mesh").gameObject.GetComponent<Rigidbody>();
         _rb = GetComponent<Rigidbody>();
+
         var cm = GameObject.FindGameObjectWithTag("PlayerCM");
         var vCam = cm.GetComponent<CinemachineVirtualCamera>();
         var selfTransform = transform;
         vCam.gameObject.SetActive(false);
         vCam.Follow = selfTransform;
         vCam.LookAt = selfTransform;
-        // cameraOffset += selfTransform.position;
+
         var body = vCam.GetCinemachineComponent<CinemachineTransposer>();
         body.m_FollowOffset = cameraOffset;
         body.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
@@ -55,6 +59,9 @@ public class MyCharacterController : MonoBehaviour
         aim.m_LookaheadSmoothing = 1.0f;
         vCam.gameObject.SetActive(true);
         _turretSocketTransform = playerTurret.transform.Find("Socket");
+
+        healthDisplay = GameObject.Find("Canvas/Health").GetComponent<HealthDisplay>();
+        healthDisplay.SetHealth(health);
     }
 
     private void OnDisable()
@@ -105,15 +112,31 @@ public class MyCharacterController : MonoBehaviour
 
     public void Kill()
     {
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+        Instantiate(explosiveDebris, transform.position, transform.rotation);
+        Destroy(playerTurret);
+        Destroy(gameObject);
     }
 
     public void Damage(float damage)
     {
-        throw new NotImplementedException();
+        health -= damage;
+        healthDisplay.SetHealth(health);
+        if (health <= 0)
+        {
+            Kill();
+        }
     }
 
     public void Damage(float damage, Vector3 impactForce, Vector3 impactPoint)
     {
-        throw new NotImplementedException();
+        _rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.Impulse);
+        health -= damage;
+        healthDisplay.SetHealth(health);
+        if (health <= 0)
+        {
+            Kill();
+        }
     }
 }
