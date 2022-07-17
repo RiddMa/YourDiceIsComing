@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8256280109268178749}
   - component: {fileID: 8256280109275474589}
   - component: {fileID: 8256280109272375805}
-  - component: {fileID: 8256280109275905053}
   - component: {fileID: 8561564465121086003}
   m_Layer: 0
   m_Name: d6-red
@@ -116,19 +115,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.000001, z: 2}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
---- !u!114 &8256280109275905053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256280109270370813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3f252609f370b4eb2e1853ab6b3df4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 0
 --- !u!114 &8561564465121086003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +128,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8256280109275474589}
+  filterList:
+  - 

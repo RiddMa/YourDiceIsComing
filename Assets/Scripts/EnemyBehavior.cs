@@ -9,6 +9,7 @@ public class EnemyBehavior : MonoBehaviour
     public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
     public float speedWalk = 10;                    //  Walking speed, speed in the nav mesh agent
     public float speedRun = 15;                     //  Running speed
+    public GameObject bulletGO;
 
     public float viewRadius = 40;                   //  Radius of the enemy view
     public float viewAngle = 360;                    //  Angle of the enemy view
@@ -17,7 +18,9 @@ public class EnemyBehavior : MonoBehaviour
     public float meshResolution = 1.0f;             //  How many rays will cast per degree
     public int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
     public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
-
+    public float shootDistance = 20f;
+    public float fireWaitTime = 2.0f;
+    public float bulletSpeed = 5f;
 
     public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
@@ -31,6 +34,8 @@ public class EnemyBehavior : MonoBehaviour
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
     bool m_CaughtPlayer;                            //  if the enemy has caught the player
+    Transform socketTransform;
+    float m_FireWaitTime = 2.0f;
 
     void Start()
     {
@@ -45,6 +50,8 @@ public class EnemyBehavior : MonoBehaviour
         m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
         navMeshAgent = GetComponent<NavMeshAgent>();
 
+        socketTransform = transform.Find("Socket");
+        Debug.Log("Socket" + socketTransform.ToString());
         //navMeshAgent.isStopped = false;
         //navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
         //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
@@ -64,6 +71,23 @@ public class EnemyBehavior : MonoBehaviour
         {
             Patroling();
         }*/
+        Shoot();
+
+    }
+
+    void Shoot()
+    {
+        m_FireWaitTime -= Time.deltaTime;
+        if(m_FireWaitTime < 0f && navMeshAgent.remainingDistance < shootDistance)
+        {
+            Debug.Log("Enemy Fired");
+            m_FireWaitTime = fireWaitTime;
+            var bullet = Instantiate(bulletGO, socketTransform.position, socketTransform.rotation);
+            var bulletSpeedVector = socketTransform.forward * bulletSpeed;
+
+            bullet.GetComponent<Bullet>().filterList = new string[] { "Enemy" }; // add filter
+            bullet.GetComponent<Bullet>().Shoot(bulletSpeedVector);
+        }
     }
 
     private void Chasing()
