@@ -30,6 +30,14 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
     public HealthDisplay healthDisplay = null;
     public GameObject explosiveDebris;
 
+    [SerializeField] private AudioClip shootingAudioClip;
+    [SerializeField] private AudioClip impactAudioClip;
+    [SerializeField] private AudioClip explosionAudioClip;
+
+    // private AudioSource _shootingAudioSource;
+    // private AudioSource _explosionAudioSource;
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -59,6 +67,9 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
         aim.m_LookaheadSmoothing = 1.0f;
         vCam.gameObject.SetActive(true);
         _turretSocketTransform = playerTurret.transform.Find("Socket");
+
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDisable()
@@ -68,6 +79,9 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
 
     private void Fire(InputAction.CallbackContext context)
     {
+        _audioSource.clip = shootingAudioClip;
+        _audioSource.volume = 0.25f;
+        _audioSource.Play();
         var rot = playerTurret.transform.rotation;
         var bullet = Instantiate(bulletTypeGameObject, _turretSocketTransform.position, rot);
         var bulletSpeedVector = bulletSpeed * playerTurret.transform.forward;
@@ -111,6 +125,9 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
 
     public void Kill()
     {
+        _audioSource.clip = explosionAudioClip;
+        _audioSource.volume = 0.25f;
+        _audioSource.Play();
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
         Instantiate(explosiveDebris, transform.position, transform.rotation);
@@ -130,6 +147,9 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
 
     public void Damage(float damage, Vector3 impactForce, Vector3 impactPoint)
     {
+        _audioSource.clip = impactAudioClip;
+        _audioSource.volume = 0.25f;
+        _audioSource.Play();
         _rb.AddForceAtPosition(impactForce, impactPoint, ForceMode.Impulse);
         health -= damage;
         healthDisplay.SetHealth(health);
