@@ -19,7 +19,7 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
     private InputAction _moveInput;
 
     private Camera _mainCamera;
-    public Vector3 cameraOffset=new Vector3(0, 10, -10);
+    public Vector3 cameraOffset = new Vector3(0, 10, -10);
 
     private void Awake()
     {
@@ -32,16 +32,22 @@ public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float
         _playerControls.Enable();
         _moveInput = _playerControls.Player.Move;
         _playerControls.Player.Fire.performed += Fire;
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent("Mesh").GetComponent<Rigidbody>();
         var cm = GameObject.FindGameObjectWithTag("PlayerCM");
         var vCam = cm.GetComponent<CinemachineVirtualCamera>();
         var selfTransform = transform;
         vCam.gameObject.SetActive(false);
         vCam.Follow = selfTransform;
         vCam.LookAt = selfTransform;
-        cameraOffset += selfTransform.position;
-        vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = cameraOffset;
+        // cameraOffset += selfTransform.position;
+        var body = vCam.GetCinemachineComponent<CinemachineTransposer>();
+        body.m_FollowOffset = cameraOffset;
+        body.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
         vCam.ForceCameraPosition(cameraOffset, Quaternion.identity);
+        var aim = vCam.GetCinemachineComponent<CinemachineComposer>();
+        aim.m_LookaheadTime = 0.1f;
+        aim.m_LookaheadSmoothing = 1.0f;
+
         vCam.gameObject.SetActive(true);
     }
 
