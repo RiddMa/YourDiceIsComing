@@ -85,7 +85,7 @@ public class EnemyBehavior : MonoBehaviour
             var bullet = Instantiate(bulletGO, socketTransform.position, socketTransform.rotation);
             var bulletSpeedVector = socketTransform.forward * bulletSpeed;
 
-            bullet.GetComponent<Bullet>().filterList = new string[] { "Enemy" }; // add filter
+            bullet.GetComponent<Bullet>().filterList = new string[] { "Enemy", "Bullet" }; // add filter
             bullet.GetComponent<Bullet>().Shoot(bulletSpeedVector);
         }
     }
