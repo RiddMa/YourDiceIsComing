@@ -23,6 +23,7 @@ public class MyCharacterController : MonoBehaviour
 
     public GameObject playerTurret;
     public GameObject bulletTypeGameObject;
+    public float bulletSpeed = 20f;
     private Transform _turretSocketTransform;
 
     private void Awake()
@@ -65,9 +66,7 @@ public class MyCharacterController : MonoBehaviour
     {
         var rot = playerTurret.transform.rotation;
         var bullet = Instantiate(bulletTypeGameObject, _turretSocketTransform.position, rot);
-        // var bulletSpeedVector = (new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, rot.eulerAngles.z)) * 10f;
-        var bulletSpeedVector = playerTurret.transform.eulerAngles * 10f;
-        Debug.Log(bulletSpeedVector.ToString());
+        var bulletSpeedVector = bulletSpeed * playerTurret.transform.forward;
         bullet.GetComponent<Bullet>().shoot(bulletSpeedVector);
     }
 
