@@ -53,7 +53,7 @@ public class MyCharacterController : MonoBehaviour
         aim.m_LookaheadTime = 0.1f;
         aim.m_LookaheadSmoothing = 1.0f;
         vCam.gameObject.SetActive(true);
-        _turretSocketTransform = playerTurret.transform.Find("TurretSocket");
+        _turretSocketTransform = playerTurret.transform.Find("Socket");
     }
 
     private void OnDisable()
@@ -63,14 +63,11 @@ public class MyCharacterController : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        Debug.Log("Fired");
         var rot = playerTurret.transform.rotation;
-        Debug.Log(bulletTypeGameObject,_turretSocketTransform);
-        // Debug.Log();
-        Debug.Log(rot.ToString());
         var bullet = Instantiate(bulletTypeGameObject, _turretSocketTransform.position, rot);
-        bullet.GetComponent<Bullet>()
-            .shoot((new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, rot.eulerAngles.z)) * 10f);
+        var bulletSpeedVector = (new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, rot.eulerAngles.z)) * 10f;
+        Debug.Log(bulletSpeedVector.ToString());
+        bullet.GetComponent<Bullet>().shoot(bulletSpeedVector);
     }
 
     private void Start()
