@@ -86,7 +86,9 @@ public class MyCharacterController : MonoBehaviour
         // _rb.velocity = speed * Time.fixedDeltaTime * direction;
         // _rb.AddForce(magnitude * Time.fixedDeltaTime * direction, ForceMode.Force);
         // _rb.AddForce(magnitude * direction, ForceMode.Force);
-        _rb.AddForceAtPosition(magnitude * direction, transform.position + new Vector3(0, 1, 0));
+        // _rb.velocity;
+        _rb.AddForceAtPosition(magnitude * Mathf.Pow(2.7f, -_rb.velocity.magnitude) * direction,
+            transform.position + new Vector3(0, 1, 0));
     }
 
     private void SetCharacterLookAtCursor()
