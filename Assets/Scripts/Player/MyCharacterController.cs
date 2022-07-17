@@ -32,7 +32,8 @@ public class MyCharacterController : MonoBehaviour
         _playerControls.Enable();
         _moveInput = _playerControls.Player.Move;
         _playerControls.Player.Fire.performed += Fire;
-        _rb = GetComponent("Mesh").GetComponent<Rigidbody>();
+        // _rb = transform.Find("Mesh").gameObject.GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         var cm = GameObject.FindGameObjectWithTag("PlayerCM");
         var vCam = cm.GetComponent<CinemachineVirtualCamera>();
         var selfTransform = transform;
@@ -71,6 +72,8 @@ public class MyCharacterController : MonoBehaviour
 
         _movementX = movement.x;
         _movementY = movement.y;
+
+        // transform.position = _rb.transform.position;
     }
 
     private void FixedUpdate()
