@@ -21,6 +21,10 @@ public class MyCharacterController : MonoBehaviour
     private Camera _mainCamera;
     public Vector3 cameraOffset = new Vector3(0, 10, -10);
 
+    public GameObject playerTurret;
+    public GameObject bulletTypeGameObject;
+    private Transform _turretSocketTransform;
+
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -48,8 +52,8 @@ public class MyCharacterController : MonoBehaviour
         var aim = vCam.GetCinemachineComponent<CinemachineComposer>();
         aim.m_LookaheadTime = 0.1f;
         aim.m_LookaheadSmoothing = 1.0f;
-
         vCam.gameObject.SetActive(true);
+        _turretSocketTransform = playerTurret.transform.Find("TurretSocket");
     }
 
     private void OnDisable()
@@ -60,6 +64,13 @@ public class MyCharacterController : MonoBehaviour
     private void Fire(InputAction.CallbackContext context)
     {
         Debug.Log("Fired");
+        var rot = playerTurret.transform.rotation;
+        Debug.Log(bulletTypeGameObject,_turretSocketTransform);
+        // Debug.Log();
+        Debug.Log(rot.ToString());
+        var bullet = Instantiate(bulletTypeGameObject, _turretSocketTransform.position, rot);
+        bullet.GetComponent<Bullet>()
+            .shoot((new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, rot.eulerAngles.z)) * 10f);
     }
 
     private void Start()

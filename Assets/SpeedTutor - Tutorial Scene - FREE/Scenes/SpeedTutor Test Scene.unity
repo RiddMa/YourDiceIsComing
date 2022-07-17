@@ -1990,6 +1990,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7168229562322533100, guid: d6644db775954a6986fc09f73c4f9972, type: 3}
+      propertyPath: playerTurret
+      value: 
+      objectReference: {fileID: 1952599692}
+    - target: {fileID: 7168229562322533100, guid: d6644db775954a6986fc09f73c4f9972, type: 3}
       propertyPath: cameraOffset.y
       value: 10
       objectReference: {fileID: 0}
@@ -1997,6 +2001,10 @@ PrefabInstance:
       propertyPath: cameraOffset.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 7168229562322533100, guid: d6644db775954a6986fc09f73c4f9972, type: 3}
+      propertyPath: bulletTypeGameObject
+      value: 
+      objectReference: {fileID: 1281264617389113647, guid: 82d7b73a7ca88da4ebfbd30a28bcbd67, type: 3}
     - target: {fileID: 7168229562322533103, guid: d6644db775954a6986fc09f73c4f9972, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3103,6 +3111,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4255817752702270, guid: 1a86798efce66624684ac647bdd0edcd, type: 3}
   m_PrefabInstance: {fileID: 1932461951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1952599692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8031930657392074903, guid: a94a14eb88d35474bbb36b76701b7e14, type: 3}
+  m_PrefabInstance: {fileID: 876868026}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1957845111
 PrefabInstance:
