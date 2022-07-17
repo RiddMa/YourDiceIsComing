@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class MyCharacterController : MonoBehaviour, IKillable, IDamageable<float>
+public class MyCharacterController : MonoBehaviour
 {
     private Rigidbody _rb;
     private float _movementX;
