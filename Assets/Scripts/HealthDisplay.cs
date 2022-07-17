@@ -13,6 +13,7 @@ public class HealthDisplay : MonoBehaviour
     void Start()
     {
         _healthText = GetComponent<TMP_Text>();
+        _healthText.text = "Health: 500";
     }
 
     // Update is called once per frame

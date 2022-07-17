@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillable
+public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillable, IHealable<float>
 {
     private Rigidbody _rb;
     private float _movementX;
@@ -27,7 +27,7 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
     private Transform _turretSocketTransform;
 
     public float health = 500f;
-    public HealthDisplay healthDisplay;
+    public HealthDisplay healthDisplay = null;
     public GameObject explosiveDebris;
 
     private void Awake()
@@ -59,9 +59,6 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
         aim.m_LookaheadSmoothing = 1.0f;
         vCam.gameObject.SetActive(true);
         _turretSocketTransform = playerTurret.transform.Find("Socket");
-
-        healthDisplay = GameObject.Find("Canvas/Health").GetComponent<HealthDisplay>();
-        healthDisplay.SetHealth(health);
     }
 
     private void OnDisable()
@@ -79,6 +76,8 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
 
     private void Start()
     {
+        healthDisplay = GameObject.Find("Canvas/Health").GetComponent<HealthDisplay>();
+        healthDisplay.SetHealth(health);
     }
 
     private void Update()
@@ -138,5 +137,11 @@ public class MyCharacterController : MonoBehaviour, IDamageable<float>, IKillabl
         {
             Kill();
         }
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        healthDisplay.SetHealth(health);
     }
 }
