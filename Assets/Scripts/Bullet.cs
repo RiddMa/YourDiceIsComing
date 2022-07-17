@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     private Vector3 velocity;
     public Rigidbody rb = null;
+    public string[] filterList = new string[] {""};
     private float impact = 1f;
     private float liveTime = 10f;
     private HashSet<int> targetList = new HashSet<int>();
@@ -36,6 +37,11 @@ public class Bullet : MonoBehaviour
         if (collision.body == null) return;
         if (collision.body.CompareTag("Player") || collision.body.CompareTag("Enemy"))
         {
+            foreach(string filterString in filterList)
+            {
+                // filter the specific tag
+                if (collision.body.CompareTag(filterString)) return;
+            }
             Destroy(gameObject);
             var DamageTaken = collision.body.gameObject.GetComponent<IDamageable<float>>();
             int hashCode = DamageTaken.GetHashCode();

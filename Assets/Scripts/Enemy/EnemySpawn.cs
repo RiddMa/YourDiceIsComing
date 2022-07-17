@@ -8,9 +8,8 @@ public class EnemySpawn : MonoBehaviour
     public float repeatTime = 1f;
     public float waitTime = 1f;
 
-    private int[] map = new int[] { -70, 120, -120, 70 };
-    private const int length = 760;
-    private Vector3 startPoint = new Vector3(-70f, 4f, -120f);
+    private const int length = 600;
+    private Vector3 startPoint = new Vector3(-50f, 4f, -100f);
     private Vector3[] mmap = new Vector3[]
     {
         new Vector3(1, 0, 0),
@@ -27,7 +26,7 @@ public class EnemySpawn : MonoBehaviour
     private void spawn()
     {
         int len = Random.Range(0, length);
-        int res = len / 190;
+        int res = len / 150;
         Vector3 spawnPoint = startPoint;
         /*switch (res)
         {
@@ -54,9 +53,9 @@ public class EnemySpawn : MonoBehaviour
         }*/
         for(int i = 0; i < res; i++)
         {
-            spawnPoint += 190 * mmap[i];
+            spawnPoint += 150 * mmap[i];
         }
-        spawnPoint += len % 190 * mmap[res];
+        spawnPoint += len % 150 * mmap[res];
         Instantiate(Enemy, spawnPoint, transform.rotation);
     }
 }

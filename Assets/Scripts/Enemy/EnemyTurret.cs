@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class EnemyTurret : MonoBehaviour
 {
-    public GameObject followGameObject;
+    public GameObject Bullet;
+
+   
     // Start is called before the first frame update
     void Start()
     {
