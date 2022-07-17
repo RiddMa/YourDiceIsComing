@@ -59,10 +59,11 @@ public class EnemySpawn : MonoBehaviour
         spawnPoint += len % 150 * mmap[res];
         Instantiate(Enemy, spawnPoint, transform.rotation);
 
-        time += Time.deltaTime;
-        if (time < 40) repeatTime = 5 - 0.1f * time;
-        else repeatTime = 0.5f;
-
+        // time += Time.deltaTime;
+        // if (time < 40) repeatTime = 5 - 0.1f * time;
+        // else repeatTime = 0.5f;
+        repeatTime = 0.75f;
+        
         Invoke("spawn", repeatTime);
     }
 }

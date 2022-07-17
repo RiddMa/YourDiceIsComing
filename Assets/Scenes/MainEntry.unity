@@ -431,7 +431,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -165, y: 188}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 702.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246327484
 MonoBehaviour:
@@ -480,8 +480,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -911,7 +911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549453290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.39, y: 6.362447, z: -3.95}
+  m_LocalPosition: {x: -3.44, y: 8.12, z: -3.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1377,7 +1377,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: -171}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953972144
 MonoBehaviour:
@@ -1754,7 +1754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078121410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.39, y: 6.362447, z: -3.9499998}
+  m_LocalPosition: {x: -3.44, y: 8.12, z: -3.9499998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2268,15 +2268,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.3916616
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.1
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.626968
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2977,7 +2977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.82035
+      value: -98.1
       objectReference: {fileID: 0}
     - target: {fileID: 1388202754486975788, guid: 87b75191ec68bf2498f3bd1df2826e4c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4143,8 +4143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -221}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 48, y: -455.2}
+  m_SizeDelta: {x: 478, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2010995844
 MonoBehaviour:
@@ -4193,8 +4193,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
