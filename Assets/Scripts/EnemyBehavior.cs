@@ -54,7 +54,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         //EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
         m_PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Move(speedRun);
+        Move(navMeshAgent.speed);
         Chasing();
         /*if (!m_IsPatrol)
         {
@@ -77,9 +77,9 @@ public class EnemyBehavior : MonoBehaviour
             navMeshAgent.SetDestination(m_PlayerPosition);          //  set the destination of the enemy to the player location
             //Move(speedRun);
         }
-        /*if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
-            if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+            /*if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
             {
                 //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
                 m_IsPatrol = true;
@@ -96,8 +96,8 @@ public class EnemyBehavior : MonoBehaviour
                     //  Wait if the current position is not the player position
                     Stop();
                 m_WaitTime -= Time.deltaTime;
-            }
-        }*/
+            }*/
+        }
     }
 
     private void Patroling()
