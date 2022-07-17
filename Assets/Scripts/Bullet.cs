@@ -35,26 +35,39 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("target!");
         if (collision.body == null) return;
-        if (collision.body.CompareTag("Player") || collision.body.CompareTag("Enemy"))
+        if (collision.body.CompareTag("Player") || collision.body.CompareTag("Enemy") || collision.body.CompareTag("Bullet"))
         {
+            bool flag = true;
             foreach(string filterString in filterList)
             {
                 // filter the specific tag
-                if (collision.body.CompareTag(filterString)) return;
+                if (collision.body.CompareTag(filterString))
+                {
+                    flag = false;
+                    break;
+                }
             }
-            Destroy(gameObject);
-            var DamageTaken = collision.body.gameObject.GetComponent<IDamageable<float>>();
-            int hashCode = DamageTaken.GetHashCode();
-            if(targetList.Contains(hashCode)) return;
-
-            int cnt = 0;
-            foreach(var con in collision.contacts)
+            if (flag && !collision.body.CompareTag("Bullet"))
             {
-                Debug.Log("Damage!!!" + (++cnt).ToString());
-                DamageTaken.Damage(51f, impact * (velocity.normalized + Vector3.up * 2), con.point);
-                break;
+                Destroy(gameObject);
+                var DamageTaken = collision.body.gameObject.GetComponent<IDamageable<float>>();
+                int hashCode = DamageTaken.GetHashCode();
+                if (targetList.Contains(hashCode)) return;
+
+                int cnt = 0;
+                foreach (var con in collision.contacts)
+                {
+                    Debug.Log("Damage!!!" + (++cnt).ToString());
+                    DamageTaken.Damage(51f, impact * (velocity.normalized + Vector3.up * 2), con.point);
+                    break;
+                }
+                targetList.Add(DamageTaken.GetHashCode());
             }
-            targetList.Add(DamageTaken.GetHashCode());
+            if (flag && collision.body.CompareTag("Bullet"))
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

@@ -139,7 +139,7 @@ MonoBehaviour:
   healthPoint: 100
   defence: 0
   Explosive_debris: {fileID: 4709273232330652049, guid: 2103ac4717c10804fbe14c470608b03f, type: 3}
-  Icon: {fileID: 8669150545287265063, guid: 0f34eb9e9045bf44eacab211ccf11611, type: 3}
+  Icon: {fileID: 8669150545287265063, guid: 919d8dec056126c41b786a34e9bf5bbf, type: 3}
 --- !u!114 &5045476362201496653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 391123878345763651}
   m_Layer: 0
   m_Name: Socket
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d90e146b1895054dba6ac4e13fe7454, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d90e146b1895054dba6ac4e13fe7454, type: 3}
 --- !u!4 &1087609295260976772 stripped
@@ -328,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 8256280109270370813, guid: 5d036d593aa9385428d4847451406cb5, type: 3}
       propertyPath: m_Name
       value: d6-red
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256280109270370813, guid: 5d036d593aa9385428d4847451406cb5, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8256280109275474589, guid: 5d036d593aa9385428d4847451406cb5, type: 3}

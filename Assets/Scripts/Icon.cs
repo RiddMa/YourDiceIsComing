@@ -7,6 +7,7 @@ public class Icon : MonoBehaviour
     //float smooth = 5.0f;
     float tiltAngle = 60.0f;
     public Transform shild_transform;
+    public float healthPoint = 10f;
     void Update()
     {
         //// Smoothly tilts a transform towards a target rotation.
@@ -36,6 +37,9 @@ public class Icon : MonoBehaviour
 
     private void Fetched(GameObject player)
     {
+        Debug.Log("Fetched");
+        var healthTaken = player.transform.GetComponentInParent<Interfaces.IHealable<float>>();
+        healthTaken.Heal(healthPoint);
         Destroy(gameObject); // destroy self
     }
 }

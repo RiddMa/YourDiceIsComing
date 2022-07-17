@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject Enemy;
-    public float repeatTime = 1f;
+    public float repeatTime = 5f;
     public float waitTime = 1f;
 
     private const int length = 600;
@@ -17,10 +17,11 @@ public class EnemySpawn : MonoBehaviour
         new Vector3(-1, 0, 0),
         new Vector3(0, 0, -1)
     };
+    private float time = 0f;
 
     private void Start()
     {
-        InvokeRepeating("spawn", waitTime, repeatTime);
+        Invoke("spawn", waitTime);
     }
 
     private void spawn()
@@ -57,5 +58,11 @@ public class EnemySpawn : MonoBehaviour
         }
         spawnPoint += len % 150 * mmap[res];
         Instantiate(Enemy, spawnPoint, transform.rotation);
+
+        time += Time.deltaTime;
+        if (time < 40) repeatTime = 5 - 0.1f * time;
+        else repeatTime = 0.5f;
+
+        Invoke("spawn", repeatTime);
     }
 }
