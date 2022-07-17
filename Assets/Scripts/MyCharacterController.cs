@@ -19,7 +19,7 @@ public class MyCharacterController : MonoBehaviour
     private InputAction _moveInput;
 
     private Camera _mainCamera;
-    public Vector3 cameraOffset;
+    public Vector3 cameraOffset=new Vector3(0, 10, -10);
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class MyCharacterController : MonoBehaviour
         vCam.gameObject.SetActive(false);
         vCam.Follow = selfTransform;
         vCam.LookAt = selfTransform;
-        cameraOffset = selfTransform.position + new Vector3(0, 10, -10);
+        cameraOffset += selfTransform.position;
         vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = cameraOffset;
         vCam.ForceCameraPosition(cameraOffset, Quaternion.identity);
         vCam.gameObject.SetActive(true);
